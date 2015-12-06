@@ -165,6 +165,7 @@ namespace Sledge.Editor.Compiling
                 mappedFile = Path.Combine(folder, mappedFile);
                 if (mappedFile == Document.MapFile) mappedFile = Path.Combine(folder, Path.GetFileName(file));
                 if (mappedFile == Document.MapFile) continue;
+                if (file == mappedFile) continue;
                 File.Copy(file, mappedFile, true);
             }
         }

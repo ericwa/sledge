@@ -190,6 +190,12 @@ namespace Sledge.Editor.Rendering.Renderers
                         if (tuple.Item1.HideDistance() <= (location - origin).VectorMagnitude()) continue;
 
                         var angles = tuple.Item1.EntityData.GetPropertyCoordinate("angles", Coordinate.Zero);
+                        if (angles.Equals(Coordinate.Zero))
+                        {
+                            var stringangle = tuple.Item1.EntityData.GetPropertyValue("angle");
+                            var angle = stringangle != null ? float.Parse(stringangle) : 0;
+                            angles = new Coordinate(0, new decimal(angle), 0);
+                        }
                         angles = new Coordinate(-DMath.DegreesToRadians(angles.Z), DMath.DegreesToRadians(angles.X),
                                                 -DMath.DegreesToRadians(angles.Y));
                         if (tuple.Item1.IsSelected)
